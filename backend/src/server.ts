@@ -7,6 +7,8 @@ import { connectDB } from './lib/db';
 const app = express();
 const port = config.PORT;
 
+app.use(express.json());
+
 app.use('api/v1/auth', authRoutes)
 
 app.listen(port, () => {
