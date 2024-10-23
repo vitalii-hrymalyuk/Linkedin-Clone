@@ -1,12 +1,15 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
+import { config } from './config';
+
+import authRoutes from './routes/auth.route'
+import { connectDB } from './lib/db';
 
 const app = express();
-const port = 3000;
+const port = config.PORT;
 
-app.get('/', (req: Request, res: Response) => {
-	res.send('Hello, TypeScript with Express!');
-});
+app.use('api/v1/auth', authRoutes)
 
 app.listen(port, () => {
 	console.log(`Server is running at http://localhost:${port}`);
+	connectDB();
 });
