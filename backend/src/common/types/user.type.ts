@@ -1,4 +1,5 @@
 import { ObjectId } from 'mongoose';
+import { Request } from 'express';
 
 interface Experience {
 	title: string;
@@ -30,6 +31,9 @@ interface IUser {
 	experience?: Experience[];
 	education?: Education[];
 	connections?: ObjectId[];
+}
+export interface AuthenticatedRequest extends Request {
+	user?: IUser
 }
 
 export default IUser;

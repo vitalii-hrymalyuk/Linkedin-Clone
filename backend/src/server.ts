@@ -1,17 +1,35 @@
-import express from 'express';
+import { Application } from 'express';
+import { appRoutes } from './routes/routes';
 import { config } from './config';
+import http from 'http';
+import express from 'express';
+import cookieParser from 'cookie-parser';
 
-import authRoutes from './routes/auth.route'
-import { connectDB } from './lib/db';
+const SERVER_PORT = config.PORT || 5000;
 
-const app = express();
-const port = config.PORT || 5000;
+export const start = (app: Application) => {
+	standardMiddleware(app);
+	routesMiddleware(app);
+	startServer(app);
+}
 
-app.use(express.json());
+const routesMiddleware = (app: Application): void => {
+	appRoutes(app);
+}
 
-app.use('/api/v1/auth', authRoutes)
+const standardMiddleware = (app: Application): void => {
+	app.use(express.json());
+	app.use(cookieParser())
+}
 
-app.listen(port, () => {
-	console.log(`Server is running at http://localhost:${port}`);
-	connectDB();
-});
+const startServer = (app: Application): void => {
+	try {
+		const httpServer: http.Server = new http.Server(app);
+
+		httpServer.listen(SERVER_PORT, () => {
+			console.log(`Server started on port ${SERVER_PORT}`)
+		})
+	} catch (error) {
+		console.log('Error starting server', error)
+	}
+}

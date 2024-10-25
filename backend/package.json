@@ -2,10 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
-    "start": "ts-node src/server.ts",
-    "start:dev": "nodemon --watch src --exec ts-node src/server.ts"
+    "start": "ts-node src/app.ts",
+    "start:dev": "nodemon --watch src --exec ts-node src/app.ts"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +21,7 @@
     "mongoose": "^8.7.2"
   },
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.7",
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^22.7.9",
