@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { config } from '../config';
 import UserModel from '../models/user.model';
+import { sendWelcomeEmail } from '../emails/emailHandlers';
 
 export const signup = async (req: Request, res: Response): Promise<void> => {
 	try {
@@ -60,6 +61,13 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
 
 		res.status(201).json({ message: 'User registered successfully' });
 
+		const profileUrl = `${config.CLIENT_URL}/profile/${user.username}`;
+
+		try {
+			await sendWelcomeEmail(email, name, profileUrl);
+		} catch (error) {
+			console.log('Error sending welcome email:', error);
+		}
 
 	} catch (error) {
 		// Log the error (Consider using a logging library)
