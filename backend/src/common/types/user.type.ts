@@ -36,4 +36,17 @@ export interface AuthenticatedRequest extends Request {
 	user?: IUser
 }
 
+export interface ProfileUpdate {
+	name?: string;
+	headline?: string;
+	username?: string;
+	about?: string;
+	location?: string;
+	profilePicture?: string;
+	bannerImg?: string;
+	skills?: string[];
+	experience?: string[];
+	education?: string[];
+}
+
 export default IUser;
