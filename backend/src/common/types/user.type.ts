@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongoose';
+import mongoose, { ObjectId } from 'mongoose';
 import { Request } from 'express';
 
 interface Experience {
@@ -17,7 +17,7 @@ interface Education {
 }
 
 interface IUser {
-	_id?: ObjectId;
+	_id?: mongoose.Types.ObjectId;
 	name: string;
 	username: string;
 	email: string;
