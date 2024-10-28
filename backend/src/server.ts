@@ -18,7 +18,7 @@ const routesMiddleware = (app: Application): void => {
 }
 
 const standardMiddleware = (app: Application): void => {
-	app.use(express.json());
+	app.use(express.json({ limit: '5mb' }));
 	app.use(cookieParser())
 }
 

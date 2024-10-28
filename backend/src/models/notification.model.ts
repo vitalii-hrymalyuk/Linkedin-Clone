@@ -1,5 +1,5 @@
-import mongoose, { model, Model, Schema } from 'mongoose';
-import { INotification } from '../common/types/notificaton.types';
+import mongoose, { model, Model } from 'mongoose';
+import { INotification, NotificationType } from '../common/types/notificaton.types';
 
 const notificationSchema = new mongoose.Schema(
 	{
@@ -11,7 +11,7 @@ const notificationSchema = new mongoose.Schema(
 		type: {
 			type: String,
 			required: true,
-			enum: ['like', 'comment', 'connectionAccepted'],
+			enum: Object.values(NotificationType),
 		},
 		relatedUser: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 		relatedPost: { type: mongoose.Schema.Types.ObjectId, ref: 'Post' },
