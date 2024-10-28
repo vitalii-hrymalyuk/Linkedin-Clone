@@ -10,7 +10,7 @@ export const authRoutes = (): Router => {
 	router.post('/login', login);
 	router.post('/logout', logout);
 
-	router.get('/me', protectRoute, getCurrentUser)
+	router.get('/me', protectRoute, getCurrentUser);
 
 	return router;
 }

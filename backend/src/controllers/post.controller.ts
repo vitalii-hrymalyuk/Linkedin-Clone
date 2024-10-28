@@ -6,7 +6,6 @@ import cloudinary from '../lib/cloudinary';
 import NotificationModel from '../models/notification.model';
 import { config } from '../config';
 import { sendCommentNotificationEmail } from '../emails/emailHandlers';
-import mongoose from 'mongoose';
 export const getFeedPosts = async (
   req: AuthenticatedRequest,
   res: Response
@@ -25,6 +24,7 @@ export const getFeedPosts = async (
     res.status(500).send({ message: 'Server error' });
   }
 };
+
 export const createPost = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { content, image } = req.body;
@@ -52,6 +52,7 @@ export const createPost = async (req: AuthenticatedRequest, res: Response) => {
     res.status(500).send({ message: 'Server error' });
   }
 };
+
 export const deletePost = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const postId = req.params.id;
@@ -86,6 +87,7 @@ export const deletePost = async (req: AuthenticatedRequest, res: Response) => {
     res.status(500).send({ message: 'Server error' });
   }
 };
+
 export const getPostById = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const postId = req.params.id;
@@ -100,6 +102,7 @@ export const getPostById = async (req: AuthenticatedRequest, res: Response) => {
     res.status(500).send({ message: 'Server error' });
   }
 };
+
 export const createComment = async (
   req: AuthenticatedRequest,
   res: Response
@@ -148,6 +151,7 @@ export const createComment = async (
     res.status(500).send({ message: 'Server error' });
   }
 };
+
 export const likePost = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const postId = req.params.id;
@@ -179,5 +183,6 @@ export const likePost = async (req: AuthenticatedRequest, res: Response) => {
     res.status(200).json(post);
   } catch (error) {
     console.log(`Error in likePost: ${error}`);
+    res.status(500).send({ message: 'Server error' });
   }
 };

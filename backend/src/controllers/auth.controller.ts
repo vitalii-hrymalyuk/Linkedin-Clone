@@ -5,7 +5,6 @@ import { config } from '../config';
 import UserModel from '../models/user.model';
 import { sendWelcomeEmail } from '../emails/emailHandlers';
 import { AuthenticatedRequest } from '../common/types/user.type';
-
 export const signup = async (req: Request, res: Response): Promise<void> => {
   try {
     const { name, username, email, password } = req.body;
@@ -76,7 +75,6 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
       console.log('Error sending welcome email:', error);
     }
   } catch (error) {
-    // Log the error (Consider using a logging library)
     console.error(`Error in signup: ${error}`);
     res.status(500).json({ message: 'Internal server error' });
   }
@@ -116,7 +114,10 @@ export const login = async (req: Request, res: Response) => {
     });
 
     res.status(200).json({ message: 'Logged in successfully' });
-  } catch (error) { }
+  } catch (error) {
+    console.log(`Error in login: ${error}`);
+    res.status(500).json({ message: 'Server error' });
+  }
 };
 
 export const logout = (_req: Request, res: Response) => {

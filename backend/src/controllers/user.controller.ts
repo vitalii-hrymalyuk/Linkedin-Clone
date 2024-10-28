@@ -27,6 +27,7 @@ export const getSuggestedConnections = async (
 		res.status(500).send({ message: 'Server error' });
 	}
 };
+
 export const getPublicProfile = async (req: Request, res: Response) => {
 	try {
 		const user = await UserModel.findOne({
@@ -44,6 +45,7 @@ export const getPublicProfile = async (req: Request, res: Response) => {
 		res.status(500).send({ message: 'Server error' });
 	}
 };
+
 export const updateProfile = async (
 	req: AuthenticatedRequest,
 	res: Response
