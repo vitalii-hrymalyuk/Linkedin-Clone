@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { AuthenticatedRequest, ProfileUpdate } from '../common/types/user.type';
 import UserModel from '../models/user.model';
+import cloudinary from '../lib/cloudinary';
 
 export const getSuggestedConnections = async (
 	req: AuthenticatedRequest,
@@ -68,6 +69,16 @@ export const updateProfile = async (
 				updatedData[field] = req.body[field];
 			}
 		});
+
+		if (req.body.profilePicture) {
+			const result = await cloudinary.uploader.upload(req.body.profilePicture)
+			updatedData.profilePicture = result.secure_url;
+		}
+
+		if (req.body.bannerImg) {
+			const result = await cloudinary.uploader.upload(req.body.bannerImg)
+			updatedData.bannerImg = result.secure_url;
+		}
 
 		const user = await UserModel.findByIdAndUpdate(
 			req.user?._id,
