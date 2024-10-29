@@ -12,7 +12,7 @@ export const getFeedPosts = async (
 ) => {
   try {
     const posts = await PostModel.find({
-      author: { $in: req.user?.connections },
+      author: { $in: [...req.user?.connections!, req.user?._id] },
     })
       .populate('author', 'name username profilePicture headline')
       .populate('comments.user', 'name profilePicture')

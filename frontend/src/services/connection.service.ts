@@ -5,5 +5,6 @@ class ConnectionService {
 		const res = await axiosInstance.get('/connections/requests');
 		return res.data;
 	}
+
 }
 export const connectionService = new ConnectionService();
