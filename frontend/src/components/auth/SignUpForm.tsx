@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { ISignUp } from '../../types/auth.types';
 import { authService } from '../../services/auth.service';
@@ -13,10 +13,13 @@ const SignUpForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const queryClient = useQueryClient();
+
   const { mutate: signUpMutation, isPending } = useMutation({
     mutationFn: async (data: ISignUp) => authService.signUp(data),
     onSuccess: () => {
       toast.success('Account created successfully!');
+      queryClient.invalidateQueries({ queryKey: ['authUser'] });
     },
     onError: (err: AxiosError<ErrorResponse>) => {
       toast.error(err.response?.data?.message || 'Something went wrong!');
