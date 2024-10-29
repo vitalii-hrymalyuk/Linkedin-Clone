@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { axiosInstance } from '../lib/axios';
 import { ILogin, ISignUp } from '../types/auth.types';
 
@@ -17,6 +18,17 @@ class AuthService {
 		const res = await axiosInstance.post('/auth/logout');
 		return res.data;
 	}
-}
 
+	async getCurrentUser() {
+		try {
+			const res = await axiosInstance.get('/auth/me');
+			return res.data;
+		} catch (error: any) {
+			if (error.response && error.response.status === 401) {
+				return null;
+			}
+			toast.error(error.response.data.message || 'Something went wrong!');
+		}
+	}
+}
 export const authService = new AuthService();
