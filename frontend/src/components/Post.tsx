@@ -1,22 +1,21 @@
-import { useState } from 'react';
-import { useProfile } from '../hooks/useProfile';
-import { IComment, IPost } from '../types/post.types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { postService } from '../services/post.service';
-import toast from 'react-hot-toast';
-import { ErrorResponse } from '../types/common.types';
 import { AxiosError } from 'axios';
-import { Link } from 'react-router-dom';
+import { formatDistanceToNow } from 'date-fns';
 import {
   Loader,
   MessageCircle,
   Send,
-  Share,
   ThumbsUp,
-  Trash2,
+  Trash2
 } from 'lucide-react';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
+import { useProfile } from '../hooks/useProfile';
+import { postService } from '../services/post.service';
+import { ErrorResponse } from '../types/common.types';
+import { IComment, IPost } from '../types/post.types';
 import PostAction from './PostAction';
-import { formatDistanceToNow } from 'date-fns';
 
 const Post = ({ post }: { post: IPost }) => {
   const queryClient = useQueryClient();
@@ -146,7 +145,7 @@ const Post = ({ post }: { post: IPost }) => {
 
           <PostAction
             icon={<MessageCircle size={18} />}
-            text={`Comment (${comments.length})`}
+            text={`Comment(s) (${comments.length})`}
             onClick={() => setShowComments(!showComments)}
           />
 
