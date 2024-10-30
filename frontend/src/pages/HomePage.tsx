@@ -28,11 +28,11 @@ const HomePage = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
       <div className="hidden lg:block lg:col-span-1">
-        <Sidebar user={authUser} />
+        <Sidebar user={authUser!} />
       </div>
 
       <div className="col-span-1 lg:col-span-2 order-first lg:order-none">
-        <PostCreation user={authUser} />
+        <PostCreation user={authUser!} />
         {posts?.map((post: IPost) => (
           <Post key={post._id} post={post} />
         ))}

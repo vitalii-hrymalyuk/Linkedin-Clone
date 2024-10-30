@@ -21,8 +21,8 @@ export class PostService {
 		return res.data;
 	}
 
-	async createComment(id: string, content: string) {
-		const res = await axiosInstance.post(`/posts/${id}/comment`, { content });
+	async createComment(id: string, newComment: string) {
+		const res = await axiosInstance.post(`/posts/${id}/comment`, { content: newComment });
 		return res.data;
 	}
 

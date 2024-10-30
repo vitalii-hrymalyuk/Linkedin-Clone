@@ -122,12 +122,12 @@ export const createComment = async (
       'name username profilePicture headline'
     );
 
-    if (post?.author!.toString() !== req.user?._id!.toString()) {
+    if (post?.author?._id!.toString() !== req.user?._id!.toString()) {
       const newNotification = new NotificationModel({
         recipient: post?.author,
         type: 'comment',
         relatedUser: req.user?._id,
-        relatedPost: post?._id,
+        relatedPost: postId,
       });
       await newNotification.save();
 

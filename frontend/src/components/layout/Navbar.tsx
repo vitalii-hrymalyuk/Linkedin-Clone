@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Bell, Home, LogOut, User, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useConnections } from '../../hooks/useConnections';
+import { useConnectionsRequests } from '../../hooks/useConnections';
 import { useNotifications } from '../../hooks/useNotifications';
 import { useProfile } from '../../hooks/useProfile';
 import { authService } from '../../services/auth.service';
@@ -14,7 +14,7 @@ export const Navbar = () => {
 
   const { notifications } = useNotifications({ authUser });
 
-  const { connections } = useConnections({ authUser });
+  const { connections } = useConnectionsRequests({ authUser });
 
   const { mutate: logout } = useMutation({
     mutationFn: () => authService.logout(),
@@ -23,11 +23,11 @@ export const Navbar = () => {
     },
   });
 
-  const unreadNotificationCount: number = notifications?.data?.filter(
+  const unreadNotificationCount: number = notifications?.filter(
     (notification: INotification) => !notification.read
   ).length;
 
-  const unreadConnectionRequestsCount: number = connections?.data?.length;
+  const unreadConnectionRequestsCount: number = connections?.length;
 
   return (
     <nav className="bg-secondary shadow-md sticky top-0 z-10">

@@ -47,7 +47,7 @@ const Post = ({ post }: { post: IPost }) => {
       toast.success('Comment added successfully!');
     },
     onError: (err: AxiosError<ErrorResponse>) => {
-      toast.error(err.response?.data.message || 'Something went wrong!');
+      toast.error(err.response?.data.message || 'Failed to add comment!');
     },
   });
 
