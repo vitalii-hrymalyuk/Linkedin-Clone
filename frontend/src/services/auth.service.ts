@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
 import { axiosInstance } from '../lib/axios';
-import { ILogin, ISignUp } from '../types/auth.types';
+import { ILogin, ISignUp, IUser } from '../types/auth.types';
 
 class AuthService {
 
@@ -21,7 +21,7 @@ class AuthService {
 
 	async getCurrentUser() {
 		try {
-			const res = await axiosInstance.get('/auth/me');
+			const res = await axiosInstance.get<IUser>('/auth/me');
 			return res.data;
 		} catch (error: any) {
 			if (error.response && error.response.status === 401) {
