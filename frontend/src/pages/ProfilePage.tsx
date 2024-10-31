@@ -8,6 +8,7 @@ import AboutSection from '../components/AboutSection';
 import ExperienceSection from '../components/ExperienceSection';
 import EducationSection from '../components/EducationSection';
 import SkillsSection from '../components/SkillsSection';
+import toast from 'react-hot-toast';
 
 const ProfilePage = () => {
   const { username } = useParams();
@@ -21,9 +22,10 @@ const ProfilePage = () => {
   });
 
   const { mutate: updateProfile } = useMutation({
-    mutationFn: (updatedData: Partial<IUser>) =>
-      userService.updateProfile(updatedData),
+    mutationFn: async (updatedData: Partial<IUser>) =>
+      await userService.updateProfile(updatedData),
     onSuccess: () => {
+      toast.success('Profile updated successfully!');
       queryClient.invalidateQueries({ queryKey: ['authUser'] });
     },
   });
@@ -45,22 +47,22 @@ const ProfilePage = () => {
         onSave={handleSave}
       />
       <AboutSection
-        userData={userData}
+        userData={userData!}
         isOwnProfile={isOwnProfile}
         onSave={handleSave}
       />
       <ExperienceSection
-        userData={userData}
+        userData={userData!}
         isOwnProfile={isOwnProfile}
         onSave={handleSave}
       />
       <EducationSection
-        userData={userData}
+        userData={userData!}
         isOwnProfile={isOwnProfile}
         onSave={handleSave}
       />
       <SkillsSection
-        userData={userData}
+        userData={userData!}
         isOwnProfile={isOwnProfile}
         onSave={handleSave}
       />

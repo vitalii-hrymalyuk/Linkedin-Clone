@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 import { Image, Loader } from 'lucide-react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { readFileAsDataUrl } from '../lib/utilts';
+import { readFileAsDataUrl } from '../utils/utilts';
 import { postService } from '../services/post.service';
 import { IUser } from '../types/auth.types';
 import { ErrorResponse } from '../types/common.types';

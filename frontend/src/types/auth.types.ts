@@ -19,24 +19,27 @@ export interface IUser {
 	location?: string;
 	about?: string;
 	skills?: string[];
-	experience?: Experience[];
-	education?: Education[];
+	experience?: IExperience[];
+	education?: IEducation[];
 	connections?: IConnection[];
 }
 
-interface Experience {
+export interface IExperience {
+	_id?: string;
 	title: string;
 	company: string;
-	startDate: Date;
-	endDate: Date;
+	startDate: string;
+	endDate: string;
 	description: string;
+	currentlyWorking: boolean;
 }
 
-interface Education {
+export interface IEducation {
+	_id?: string;
 	school: string;
 	fieldOfStudy: string;
-	startYear: number;
-	endYear: number;
+	startYear: string;
+	endYear: string;
 }
 
 export interface ILogin extends Pick<ISignUp, 'username' | 'password'> { }
