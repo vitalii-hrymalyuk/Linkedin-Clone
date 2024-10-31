@@ -4,13 +4,14 @@ import HomePage from './pages/HomePage';
 import SignUpPage from './pages/auth/SignUpPage';
 import LoginPage from './pages/auth/LoginPage';
 import { Toaster } from 'react-hot-toast';
-import { useProfile } from './hooks/useProfile';
+import { useAuthUser } from './hooks/useProfile';
 import NotificationsPage from './pages/NotificationsPage';
 import NetworkPage from './pages/NetworkPage';
 import PostPage from './pages/PostPage';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
-  const { authUser, isLoading } = useProfile();
+  const { authUser, isLoading } = useAuthUser();
 
   if (isLoading) return null;
 
@@ -42,6 +43,10 @@ function App() {
         <Route
           path="/post/:postId"
           element={authUser ? <PostPage /> : <Navigate to={'/login'} />}
+        />
+        <Route
+          path="/profile/:username"
+          element={authUser ? <ProfilePage /> : <Navigate to={'/login'} />}
         />
       </Routes>
       <Toaster />

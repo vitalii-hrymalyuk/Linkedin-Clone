@@ -1,9 +1,16 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { useProfile } from '../hooks/useProfile';
+import { useAuthUser } from '../hooks/useProfile';
 import { notificationService } from '../services/notification.service';
 import { INotification, NotificationType } from '../types/notification.types';
-import { ExternalLink, Eye, MessageSquare, ThumbsUp, Trash2, UserPlus } from 'lucide-react';
+import {
+  ExternalLink,
+  Eye,
+  MessageSquare,
+  ThumbsUp,
+  Trash2,
+  UserPlus,
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { IPost } from '../types/post.types';
 import Sidebar from '../components/Sidebar';
@@ -12,7 +19,7 @@ import { formatDistanceToNow } from 'date-fns';
 const NotificationsPage = () => {
   const queryClient = useQueryClient();
 
-  const { authUser } = useProfile();
+  const { authUser } = useAuthUser();
   const { data: notifications, isLoading } = useQuery({
     queryKey: ['notifications'],
     queryFn: () => notificationService.getNotifications(),

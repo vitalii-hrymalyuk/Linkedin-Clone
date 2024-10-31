@@ -13,6 +13,7 @@ export interface IConnection {
 	_id: string
 	name: string
 	status: ConnectionStatus
+	requestId: string
 	sender: IUser
 	createdAt: Date
 	updatedAt: Date

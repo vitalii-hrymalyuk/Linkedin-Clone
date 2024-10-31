@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { userService } from '../services/user.service';
 import { postService } from '../services/post.service';
 import Sidebar from '../components/Sidebar';
-import { useProfile } from '../hooks/useProfile';
+import { useAuthUser } from '../hooks/useProfile';
 import PostCreation from '../components/PostCreation';
 import { IPost } from '../types/post.types';
 import Post from '../components/Post';
@@ -11,7 +11,7 @@ import { IUser } from '../types/auth.types';
 import RecommendedUser from '../components/RecommendedUser';
 
 const HomePage = () => {
-  const { authUser } = useProfile();
+  const { authUser } = useAuthUser();
 
   const { data: recommendedUsers } = useQuery({
     queryKey: ['recommendedUsers'],

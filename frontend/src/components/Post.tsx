@@ -5,7 +5,7 @@ import { Loader, MessageCircle, Send, ThumbsUp, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useParams } from 'react-router-dom';
-import { useProfile } from '../hooks/useProfile';
+import { useAuthUser } from '../hooks/useProfile';
 import { postService } from '../services/post.service';
 import { ErrorResponse } from '../types/common.types';
 import { IComment, IPost } from '../types/post.types';
@@ -14,7 +14,7 @@ import PostAction from './PostAction';
 const Post = ({ post }: { post: IPost }) => {
   const { postId } = useParams();
   const queryClient = useQueryClient();
-  const { authUser } = useProfile();
+  const { authUser } = useAuthUser();
 
   const [showComments, setShowComments] = useState(false);
   const [newComment, setNewComment] = useState('');

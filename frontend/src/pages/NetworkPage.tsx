@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useProfile } from '../hooks/useProfile';
+import { useAuthUser } from '../hooks/useProfile';
 import { connectionService } from '../services/connection.service';
 import Sidebar from '../components/Sidebar';
 import { UserPlus } from 'lucide-react';
@@ -8,7 +8,7 @@ import FriendRequest from '../components/FriendRequest';
 import UserCard from '../components/UserCard';
 
 const NetworkPage = () => {
-  const { authUser } = useProfile();
+  const { authUser } = useAuthUser();
 
   const { data: connectionRequests } = useQuery({
     queryKey: ['connectionRequests'],

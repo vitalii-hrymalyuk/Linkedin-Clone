@@ -3,12 +3,12 @@ import { Bell, Home, LogOut, User, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useConnectionsRequests } from '../../hooks/useConnections';
 import { useNotifications } from '../../hooks/useNotifications';
-import { useProfile } from '../../hooks/useProfile';
+import { useAuthUser } from '../../hooks/useProfile';
 import { authService } from '../../services/auth.service';
 import { INotification } from '../../types/notification.types';
 
 export const Navbar = () => {
-  const { authUser } = useProfile();
+  const { authUser } = useAuthUser();
 
   const queryClient = useQueryClient();
 

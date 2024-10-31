@@ -8,7 +8,7 @@ class ConnectionService {
 	}
 
 	async getConnectionStatus(userId: string) {
-		const res = await axiosInstance.get(`/connections/status/${userId}`);
+		const res = await axiosInstance.get<IConnection>(`/connections/status/${userId}`);
 		return res.data;
 	}
 
@@ -29,6 +29,11 @@ class ConnectionService {
 
 	async getUserConnections() {
 		const res = await axiosInstance.get<IConnection[]>(`/connections`);
+		return res.data;
+	}
+
+	async removeConnection(userId: string) {
+		const res = await axiosInstance.delete(`/connections/${userId}`);
 		return res.data;
 	}
 

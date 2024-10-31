@@ -1,3 +1,5 @@
+import { IConnection } from './connection.types';
+
 export interface ISignUp {
 	name: string;
 	username: string;
@@ -19,7 +21,7 @@ export interface IUser {
 	skills?: string[];
 	experience?: Experience[];
 	education?: Education[];
-	connections?: string[];
+	connections?: IConnection[];
 }
 
 interface Experience {
