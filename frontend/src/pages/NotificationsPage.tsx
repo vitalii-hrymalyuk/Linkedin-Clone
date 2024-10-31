@@ -51,7 +51,7 @@ const NotificationsPage = () => {
       case NotificationType.LIKE:
         return (
           <span>
-            <strong>{notification.relatedUser.name}</strong> liked your post
+            <strong>{notification.relatedUser.name}</strong> liked your post.
           </span>
         );
       case NotificationType.COMMENT:
@@ -63,7 +63,7 @@ const NotificationsPage = () => {
             >
               {notification.relatedUser.name}
             </Link>{' '}
-            commented on your post
+            commented on your post.
           </span>
         );
       case NotificationType.CONNECTION_ACCEPTED:
@@ -75,7 +75,7 @@ const NotificationsPage = () => {
             >
               {notification.relatedUser.name}
             </Link>{' '}
-            accepted your connection request
+            accepted your connection request.
           </span>
         );
       default:

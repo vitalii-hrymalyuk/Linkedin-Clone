@@ -1,3 +1,5 @@
+import { IUser } from './auth.types'
+
 export enum ConnectionStatus {
 	PENDING = 'pending',
 	ACCEPTED = 'accepted',
@@ -8,7 +10,10 @@ export enum ConnectionStatus {
 }
 
 export interface IConnection {
+	_id: string
+	name: string
 	status: ConnectionStatus
+	sender: IUser
 	createdAt: Date
 	updatedAt: Date
 }

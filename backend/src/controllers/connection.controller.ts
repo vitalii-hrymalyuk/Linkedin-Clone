@@ -140,7 +140,7 @@ export const rejectConnectionRequest = async (
 
     const request = await ConnectionRequestModel.findById(requestId);
 
-    if (request?.recipient?.toString !== userId?.toString()) {
+    if (request?.recipient?.toString() !== userId?.toString()) {
       res
         .status(403)
         .send({ message: 'Not authorized to reject this request' });
@@ -268,7 +268,7 @@ export const getConnectionStatus = async (
       }
     }
 
-		res.json({ status: ConnectionStatus.NOT_CONNECTED });
+    res.json({ status: ConnectionStatus.NOT_CONNECTED });
   } catch (error) {
     console.log(`Error in getConnectionStatus: ${error}`);
     res.status(500).send({ message: 'Server error' });

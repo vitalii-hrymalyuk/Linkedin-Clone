@@ -6,7 +6,7 @@ import { connectionService } from '../services/connection.service';
 export function useConnectionsRequests({ authUser }: { authUser: IUser }) {
 	const { data: connections } = useQuery({
 		queryKey: ['connectionRequests'],
-		queryFn: () => connectionService.getConnections(),
+		queryFn: () => connectionService.getConnectionsRequests(),
 		enabled: !!authUser,
 	});
 

@@ -6,6 +6,7 @@ import LoginPage from './pages/auth/LoginPage';
 import { Toaster } from 'react-hot-toast';
 import { useProfile } from './hooks/useProfile';
 import NotificationsPage from './pages/NotificationsPage';
+import NetworkPage from './pages/NetworkPage';
 
 function App() {
   const { authUser, isLoading } = useProfile();
@@ -29,7 +30,15 @@ function App() {
         />
         <Route
           path="/notifications"
-          element={authUser ? <NotificationsPage /> : <Navigate to={'/login'} />}
+          element={
+            authUser ? <NotificationsPage /> : <Navigate to={'/login'} />
+          }
+        />
+        <Route
+          path="/network"
+          element={
+            authUser ? <NetworkPage /> : <Navigate to={'/login'} />
+          }
         />
       </Routes>
       <Toaster />

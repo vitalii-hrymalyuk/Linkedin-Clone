@@ -1,9 +1,9 @@
 import { axiosInstance } from '../lib/axios';
-import { ConnectionStatus } from '../types/connection.types';
+import { IConnection } from '../types/connection.types';
 
 class ConnectionService {
-	async getConnections() {
-		const res = await axiosInstance.get('/connections/requests');
+	async getConnectionsRequests() {
+		const res = await axiosInstance.get<IConnection[]>('/connections/requests');
 		return res.data;
 	}
 
@@ -11,7 +11,7 @@ class ConnectionService {
 		const res = await axiosInstance.get(`/connections/status/${userId}`);
 		return res.data;
 	}
-	
+
 	async sendConnectionRequest(userId: string) {
 		const res = await axiosInstance.post(`/connections/request/${userId}`);
 		return res.data;
@@ -24,6 +24,11 @@ class ConnectionService {
 
 	async rejectRequest(requestId: string) {
 		const res = await axiosInstance.put(`/connections/reject/${requestId}`);
+		return res.data;
+	}
+
+	async getUserConnections() {
+		const res = await axiosInstance.get<IConnection[]>(`/connections`);
 		return res.data;
 	}
 

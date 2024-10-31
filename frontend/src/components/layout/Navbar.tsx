@@ -27,7 +27,7 @@ export const Navbar = () => {
     (notification: INotification) => !notification.read
   ).length;
 
-  const unreadConnectionRequestsCount: number = connections?.length;
+  const unreadConnectionRequestsCount: number = connections?.length!;
 
   return (
     <nav className="bg-secondary shadow-md sticky top-0 z-10">
