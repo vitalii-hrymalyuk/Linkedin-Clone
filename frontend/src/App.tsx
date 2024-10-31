@@ -7,6 +7,7 @@ import { Toaster } from 'react-hot-toast';
 import { useProfile } from './hooks/useProfile';
 import NotificationsPage from './pages/NotificationsPage';
 import NetworkPage from './pages/NetworkPage';
+import PostPage from './pages/PostPage';
 
 function App() {
   const { authUser, isLoading } = useProfile();
@@ -36,9 +37,11 @@ function App() {
         />
         <Route
           path="/network"
-          element={
-            authUser ? <NetworkPage /> : <Navigate to={'/login'} />
-          }
+          element={authUser ? <NetworkPage /> : <Navigate to={'/login'} />}
+        />
+        <Route
+          path="/post/:postId"
+          element={authUser ? <PostPage /> : <Navigate to={'/login'} />}
         />
       </Routes>
       <Toaster />

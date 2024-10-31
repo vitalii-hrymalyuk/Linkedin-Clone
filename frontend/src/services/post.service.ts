@@ -30,6 +30,11 @@ export class PostService {
 		const res = await axiosInstance.post(`/posts/${id}/like`);
 		return res.data;
 	}
+
+	async getPostById(postId: string) {
+		const res = await axiosInstance.get<IPost>(`/posts/${postId}`);
+		return res.data;
+	}
 }
 
 export const postService = new PostService();

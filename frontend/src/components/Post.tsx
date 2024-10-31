@@ -1,16 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { formatDistanceToNow } from 'date-fns';
-import {
-  Loader,
-  MessageCircle,
-  Send,
-  ThumbsUp,
-  Trash2
-} from 'lucide-react';
+import { Loader, MessageCircle, Send, ThumbsUp, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useProfile } from '../hooks/useProfile';
 import { postService } from '../services/post.service';
 import { ErrorResponse } from '../types/common.types';
@@ -18,6 +12,7 @@ import { IComment, IPost } from '../types/post.types';
 import PostAction from './PostAction';
 
 const Post = ({ post }: { post: IPost }) => {
+  const { postId } = useParams();
   const queryClient = useQueryClient();
   const { authUser } = useProfile();
 
@@ -54,6 +49,7 @@ const Post = ({ post }: { post: IPost }) => {
     mutationFn: async () => postService.likePost(post._id!),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['posts'] });
+      queryClient.invalidateQueries({ queryKey: ['post', postId] });
     },
   });
 

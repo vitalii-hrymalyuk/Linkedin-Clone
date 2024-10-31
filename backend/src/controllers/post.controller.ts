@@ -119,7 +119,7 @@ export const createComment = async (
       { new: true }
     ).populate<{ author: IUser }>(
       'author',
-      'name username profilePicture headline'
+      'name username profilePicture headline email'
     );
 
     if (post?.author?._id!.toString() !== req.user?._id!.toString()) {

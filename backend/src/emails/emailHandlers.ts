@@ -26,6 +26,7 @@ export const sendWelcomeEmail = async (
 		throw error;
 	}
 };
+
 export const sendCommentNotificationEmail = async (
 	recipientEmail: string,
 	recipientName: string,
