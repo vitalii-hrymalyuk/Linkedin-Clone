@@ -69,7 +69,7 @@ const RecommendedUser = ({ user }: { user: IUser }) => {
       );
     }
 
-    switch (connectionStatus.status) {
+    switch (connectionStatus?.status) {
       case 'pending':
         return (
           <button
@@ -84,13 +84,13 @@ const RecommendedUser = ({ user }: { user: IUser }) => {
         return (
           <div className="flex gap-2 justify-center">
             <button
-              onClick={() => acceptRequest(connectionStatus.requestId)}
+              onClick={() => acceptRequest(connectionStatus?.requestId)}
               className={`rounded-full p-1 flex items-center justify-center bg-green-500 hover:bg-green-600 text-white`}
             >
               <Check size={16} />
             </button>
             <button
-              onClick={() => rejectRequest(connectionStatus.requestId)}
+              onClick={() => rejectRequest(connectionStatus?.requestId)}
               className={`rounded-full p-1 flex items-center justify-center bg-red-500 hover:bg-red-600 text-white`}
             >
               <X size={16} />

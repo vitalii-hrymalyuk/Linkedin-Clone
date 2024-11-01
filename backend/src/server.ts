@@ -1,4 +1,4 @@
-import { Application } from 'express';
+import { Application, Request, Response } from 'express';
 import { appRoutes } from './routes/routes';
 import { config } from './config';
 import http from 'http';
@@ -19,10 +19,13 @@ const routesMiddleware = (app: Application): void => {
 }
 
 const standardMiddleware = (app: Application): void => {
-	app.use(cors({
-		origin: config.CLIENT_URL,
-		credentials: true,
-	}))
+	if (config.NODE_ENV !== 'production') {
+		app.use(cors({
+			origin: config.CLIENT_URL,
+			credentials: true,
+		}))
+	}
+
 	app.use(express.json({ limit: '5mb' }));
 	app.use(cookieParser())
 }

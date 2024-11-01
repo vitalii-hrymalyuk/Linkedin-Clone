@@ -6,9 +6,10 @@ import { useNotifications } from '../../hooks/useNotifications';
 import { useAuthUser } from '../../hooks/useProfile';
 import { authService } from '../../services/auth.service';
 import { INotification } from '../../types/notification.types';
+import { IUser } from '../../types/auth.types';
 
 export const Navbar = () => {
-  const { authUser } = useAuthUser();
+  const { authUser } = useAuthUser() as { authUser: IUser };
 
   const queryClient = useQueryClient();
 
