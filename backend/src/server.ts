@@ -5,12 +5,14 @@ import http from 'http';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import path from 'path';
 
 const SERVER_PORT = config.PORT || 5000;
 
 export const start = (app: Application) => {
 	standardMiddleware(app);
 	routesMiddleware(app);
+	serveFrontend(app);
 	startServer(app);
 }
 
@@ -28,6 +30,16 @@ const standardMiddleware = (app: Application): void => {
 
 	app.use(express.json({ limit: '5mb' }));
 	app.use(cookieParser())
+}
+
+const serveFrontend = (app: Application): void => {
+	const frontendPath = path.join(__dirname, '..', '..', 'frontend', 'dist');
+	app.use(express.static(frontendPath));
+
+	// Catch-all route to serve the index.html for frontend routing
+	app.get('*', (_req: Request, res: Response) => {
+		res.sendFile(path.join(frontendPath, 'index.html'));
+	});
 }
 
 const startServer = (app: Application): void => {
